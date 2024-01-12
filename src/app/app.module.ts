@@ -13,7 +13,8 @@ import { HomeComponent } from './components/core/home/home.component';
 import { NotFoundComponent } from './components/layout/not-found/not-found.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,10 @@ import { RegisterComponent } from './components/account/register/register.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

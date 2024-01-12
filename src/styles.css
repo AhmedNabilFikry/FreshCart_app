@@ -12,6 +12,7 @@
 
 body{
     font-family: var(--font-family) !important;
+    font-weight: bold;
 }
 .rating-color
 {
@@ -53,6 +54,7 @@ a , a:hover{
 .bg-main
 {
     background-color: var(--main-color) !important;
+    font-weight: bolder;
 }
 .bg-main-light
 {

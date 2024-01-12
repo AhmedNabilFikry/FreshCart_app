@@ -1,1 +1,70 @@
-<p>register works!</p>
+<div class="conatiner">
+  <div class="row w-75 mx-auto py-5">
+    <h2 class="text-primary">Register Now</h2>
+    <span class="alert alert-danger" *ngIf="ApiError">{{ApiError}}</span>
+    <form  [formGroup]="registerForm" (ngSubmit)="onSignUp(registerForm)">
+      <label for="firstname">First Name</label>
+      <input type="text" class="form-control" formControlName="firstname">
+      <div class="errors" >
+        @if(registerForm.get('firstname')?.errors && registerForm.get('firstname')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('minlength')">minLength is 3 characters</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('maxlength')">maxLength is 10 characters</p>
+        }@else if (registerForm.get('firstname')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+
+      <label for="lastname">Last Name</label>
+      <input type="text" formControlName="lastname" class="form-control">
+      <div class="errors">
+        @if (registerForm.get('lastname')?.errors && registerForm.get('lastname')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('lastname')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('lastname')?.getError('minlength')">minLength is 3 characters</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('lastname')?.getError('maxlength')">maxLength is 10 characters</p>
+        }@else if (registerForm.get('lastname')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+
+      <label for="phonenumber">Phone Number</label>
+      <input type="tel" formControlName="phonenumber" class="form-control">
+      <div class="errors">
+        @if (registerForm.get('phonenumber')?.errors && registerForm.get('phonenumber')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('phonenumber')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('phonenumber')?.getError('pattern')">Invalid Format!</p>
+        }@else if (registerForm.get('phonenumber')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+
+      <label for="email">Email Address</label>
+      <input type="email" formControlName="email" class="form-control">
+      <div class="errors">
+        @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('email')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('email')?.getError('email')">Invalid Format!</p>
+        }@else if (registerForm.get('email')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" class="form-control">
+      <div class="errors">
+        @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('password')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('password')?.getError('pattern')">Invalid Format!</p>
+        }@else if (registerForm.get('password')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+
+      <button type= "submit" [disabled]="registerForm.invalid" class="btn bg-main text-white border-0 border-none mt-4">
+        <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
+        <span *ngIf="!IsLoading">Register</span>
+      </button>
+
+    </form>
+  </div>
+</div>

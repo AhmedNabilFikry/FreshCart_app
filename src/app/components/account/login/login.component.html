@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="container-fluid">
+  <div class="row w-75 mx-auto py-5">
+    <h2 class="text-success">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSignIn(loginForm)">
+      <div class="col">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" />
+      </div>
+      <div class="error">
+        @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+          <p *ngIf="loginForm.get('email')?.getError('required')" class="alert alert-danger py-1">*required</p>
+          <p *ngIf="loginForm.get('email')?.getError('email')" class="alert alert-danger py-1">Invalid Format!</p>
+        }@else if (loginForm.get('email')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+
+      <div class="col">
+        <label for="password" class="form-label">password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" />
+      </div>
+      <div class="error">
+        @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+          <p *ngIf="loginForm.get('password')?.getError('required')" class="alert alert-danger py-1">*required</p>
+          <p *ngIf="loginForm.get('password')?.getError('pattern')" class="alert alert-danger py-1">Invalid Format!</p>
+        }@else if (loginForm.get('password')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+
+      <button type= "submit" [disabled]="loginForm.invalid" class="btn bg-main text-white border-0 border-none mt-4">
+        <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
+        <span *ngIf="!IsLoading">Login</span>
+      </button>
+    </form>
+  </div>
+</div>
