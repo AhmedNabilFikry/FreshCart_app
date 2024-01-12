@@ -1,6 +1,9 @@
 <div class="container-fluid">
-  <div class="row w-75 mx-auto py-5">
-    <h2 class="text-success">Login</h2>
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-6 py-5">
+      <div class="text-center">
+        <h2 class="text-success">Login</h2>
+      </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSignIn(loginForm)">
       <div class="col">
         <label for="email" class="form-label">Email</label>
@@ -28,10 +31,11 @@
         }
       </div>
 
-      <button type= "submit" [disabled]="loginForm.invalid" class="btn bg-main text-white border-0 border-none mt-4">
+      <button type= "submit" [disabled]="loginForm.invalid" class="btn bg-main text-white border-0 border-none mt-4 d-block ms-auto">
         <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
         <span *ngIf="!IsLoading">Login</span>
       </button>
     </form>
   </div>
 </div>
+

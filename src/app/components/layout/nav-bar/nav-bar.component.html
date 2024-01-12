@@ -37,23 +37,23 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav me-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="home" aria-current="page"
+          <a class="nav-link active" routerLink="home" aria-current="page" *ngIf="IsLogin"
             >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="cart" aria-current="page"
+          <a class="nav-link active" routerLink="cart" aria-current="page" *ngIf="IsLogin"
             >Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="products" aria-current="page"
+          <a class="nav-link active" routerLink="products" aria-current="page" *ngIf="IsLogin"
             >Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="categories" aria-current="page"
+          <a class="nav-link active" routerLink="categories" aria-current="page" *ngIf="IsLogin"
             >Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="brands" aria-current="page"
+          <a class="nav-link active" routerLink="brands" aria-current="page" *ngIf="IsLogin"
             >Brands</a>
         </li>
       </ul>
@@ -67,14 +67,17 @@
           <i class="fa-brands mx-2 fa-youtube"></i>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="login" aria-current="page"
+          <a class="nav-link active" routerLink="login" aria-current="page" *ngIf="!IsLogin"
             >SignIn</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="register" aria-current="page"
+          <a class="nav-link active" routerLink="register" aria-current="page" *ngIf="!IsLogin"
             >SignUp</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-flex align-items-center mx-2">
+          <span *ngIf="IsLogin" class="nav-link logout text-dark">Hello {{ userName['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'] }}</span>
+        </li>
+        <li class="nav-item cursor-pointer" *ngIf="IsLogin" (click) = "SingOut()" >
           <span class="nav-link active"
             >SignOut</span>
         </li>
