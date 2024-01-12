@@ -24,6 +24,8 @@ onSignIn(loginData:FormGroup):void
     this._AuthService.SignIn(loginData.value).subscribe({
       next: (response) =>{
         if (response.message === 'Succeeded') {
+          localStorage.setItem('userToken',response.user.token);
+          this._AuthService.SaveUserData();
           this.IsLoading = false;
           this._Router.navigate(['/home']);
         }
