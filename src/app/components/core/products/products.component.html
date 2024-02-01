@@ -1,0 +1,54 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-3">
+      <p>Side Bar</p>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <input type="text" class="form-control" [(ngModel)] = "searchTerm" placeholder="Search">
+        <div *ngIf="isLoading" class="text-center" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <div class="spinner-border text-main" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+    @for (P of products |search:searchTerm:'name'; track P.id) {
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="image-container">
+            <div class="first">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="wishlist"><i class="fa fa-heart-o"></i></span>
+              </div>
+            </div>
+            <a [routerLink]="['/product-details',P.id]">
+              <img alt=""
+              src={{P.imageUrl}}
+              class="img-fluid rounded thumbnail-image" style="height: 190px;width: 200px;"
+            /> <button class="View btn btn-success">View</button>
+            </a>
+          </div>
+
+          <div class="product-detail-container p-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="dress-name">{{P.name | seemore:3}}</h5>
+
+              <div class="d-flex flex-column mb-2">
+                <span class="new-price">{{P.price | currency:'USD'}}</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div>
+                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <span class="rating-number">{{P.rate}}</span>
+              </div>
+
+              <button class="btn btn-success" (click)="addToCart(P.id)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+</div>
+</div>

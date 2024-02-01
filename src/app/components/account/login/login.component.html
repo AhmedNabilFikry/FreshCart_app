@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-6 py-5">
+    <div class="col-6 py-5" style="margin-top: 50px;box-shadow: 5px 5px 10px 1px #dbd8d8;">
       <div class="text-center">
-        <h2 class="text-success">Login</h2>
+        <h2 class="text-main">Login</h2>
       </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSignIn(loginForm)">
-      <div class="col">
+      <div class="col mb-2">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" formControlName="email" />
       </div>
@@ -18,7 +18,7 @@
         }
       </div>
 
-      <div class="col">
+      <div class="col mb-2">
         <label for="password" class="form-label">password</label>
         <input type="password" class="form-control" id="password" formControlName="password" />
       </div>
@@ -30,12 +30,17 @@
           <p class="alert alert-success py-1 mt-1">Valid Input!</p>
         }
       </div>
-
-      <button type= "submit" [disabled]="loginForm.invalid" class="btn bg-main text-white border-0 border-none mt-4 d-block ms-auto">
-        <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
-        <span *ngIf="!IsLoading">Login</span>
-      </button>
+        <div class="d-flex align-items-center justify-content-center mt-2">
+          <button type= "submit" [disabled]="loginForm.invalid" class="btn bg-main text-white border-0 m-2 border-none">
+            <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
+            <span *ngIf="!IsLoading">Login</span>
+          </button>
+          <button type="button" class="btn bg-main text-white border-0 border-none m-2"routerLink="/register" >
+            Register
+          </button>
+        </div>
     </form>
   </div>
 </div>
+
 

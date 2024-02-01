@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Ilogin } from './models/Ilogin';
+import { Iregister } from './models/Iregister';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +26,14 @@ export class AuthService {
     console.log(this.userdata);
   }
 
-  SignUp(registerData:object):Observable<any>
+  SignUp(registerData:object):Observable<Ilogin>
   {
-  return this._HttpClient.post('https://localhost:7144/api/Account/Register',registerData);
+  return this._HttpClient.post<Ilogin>('https://localhost:7144/api/Account/Register',registerData);
   }
 
-  SignIn(loginData:object):Observable<any>
+  SignIn(loginData:object):Observable<Iregister>
   {
-  return this._HttpClient.post('https://localhost:7144/api/Account/Login',loginData);
+  return this._HttpClient.post<Iregister>('https://localhost:7144/api/Account/Login',loginData);
   }
 
   SignOut(){

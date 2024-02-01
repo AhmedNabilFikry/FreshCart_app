@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-6 py-5">
+    <div class="col-6 py-5" style="margin-top: 50px;box-shadow: 5px 5px 10px 1px #dbd8d8;">
       <div class="text-center">
-        <h2 class="text-success">Register Now :)</h2>
+        <h2 class="text-main">Register Now :)</h2>
       </div>
     <span class="alert alert-danger" *ngIf="ApiError">{{ApiError}}</span>
     <form  [formGroup]="registerForm" (ngSubmit)="onSignUp(registerForm)">
       <label for="firstname">First Name</label>
-      <input type="text" class="form-control" formControlName="firstname">
+      <input type="text" class="form-control mb-2" formControlName="firstname">
       <div class="errors" >
-        @if(registerForm.get('firstname')?.errors && registerForm.get('firstname')?.touched) {
+        @if(registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched) {
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('required')">*required</p>
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('minlength')">minLength is 3 characters</p>
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('firstname')?.getError('maxlength')">maxLength is 10 characters</p>
@@ -19,7 +19,7 @@
       </div>
 
       <label for="lastname">Last Name</label>
-      <input type="text" formControlName="lastname" class="form-control">
+      <input type="text" formControlName="lastname" class="form-control mb-2">
       <div class="errors">
         @if (registerForm.get('lastname')?.errors && registerForm.get('lastname')?.touched) {
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('lastname')?.getError('required')">*required</p>
@@ -31,7 +31,7 @@
       </div>
 
       <label for="phonenumber">Phone Number</label>
-      <input type="tel" formControlName="phonenumber" class="form-control">
+      <input type="tel" formControlName="phonenumber" class="form-control mb-2">
       <div class="errors">
         @if (registerForm.get('phonenumber')?.errors && registerForm.get('phonenumber')?.touched) {
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('phonenumber')?.getError('required')">*required</p>
@@ -42,7 +42,7 @@
       </div>
 
       <label for="email">Email Address</label>
-      <input type="email" formControlName="email" class="form-control">
+      <input type="email" formControlName="email" class="form-control mb-2">
       <div class="errors">
         @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('email')?.getError('required')">*required</p>
@@ -53,7 +53,7 @@
       </div>
 
       <label for="password">Password</label>
-      <input type="password" formControlName="password" class="form-control">
+      <input type="password" formControlName="password" class="form-control mb-2">
       <div class="errors">
         @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
           <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('password')?.getError('required')">*required</p>
@@ -62,12 +62,26 @@
           <p class="alert alert-success py-1 mt-2">Valid Input!</p>
         }
       </div>
-
-      <button type= "submit" [disabled]="registerForm.invalid" class="btn bg-main text-white border-0 border-none mt-4 ms-auto d-block">
+      <label for="confirmedPassword">Confirm Password</label>
+      <input type="confirmedPassword" formControlName="confirmedPassword" class="form-control mb-2">
+      <div class="errors">
+        @if (registerForm.get('confirmedPassword')?.errors && registerForm.get('confirmedPassword')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('confirmedPassword')?.getError('required')">*required</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm.get('confirmedPassword')?.getError('pattern')">Invalid Format!</p>
+          <p class="alert alert-danger py-1 mt-1" *ngIf="registerForm?.errors?.['notMatching']">Password Doesn't Match</p>
+        }@else if (registerForm.get('confirmedPassword')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+      <div class="d-flex align-items-center justify-content-center mt-4">
+      <button type= "submit" [disabled]="registerForm.invalid" class="btn bg-main text-white border-0 border-none m-2">
         <span *ngIf="IsLoading"><i class="fas fa-spinner fa-spin"></i></span>
         <span *ngIf="!IsLoading">Register</span>
       </button>
-
+      <button type= "submit" class="btn bg-main text-white border-0 border-none m-2" routerLink="/login">
+        <span>Login</span>
+      </button>
+      </div>
     </form>
   </div>
 </div>

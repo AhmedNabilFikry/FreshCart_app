@@ -1,41 +1,82 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/core/home/home.component';
-import { CartComponent } from './components/core/cart/cart.component';
 import { CategoriesComponent } from './components/core/categories/categories.component';
 import { AboutUsComponent } from './components/layout/about-us/about-us.component';
 import { BrandsComponent } from './components/core/brands/brands.component';
 import { NotFoundComponent } from './components/layout/not-found/not-found.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
+import { authenticationGuard } from './components/account/authentication.guard';
+import { ProductDetailsComponent } from './components/core/product-details/product-details.component';
+import { MainSliderComponent } from './components/core/main-slider/main-slider.component';
+import { ProductsComponent } from './components/core/products/products.component';
+import { BasketComponent } from './components/core/basket/basket.component';
+import { CheckoutComponent } from './components/core/checkout/checkout.component';
+import { CheckoutSuccessComponent } from './components/core/checkout-success/checkout-success.component';
 
 const routes: Routes = [
-  {path:'',
+  {
+   path:'',
    redirectTo:'home',
    pathMatch:'full'
   },
-  {path:'home',
+  {
+   path:'home',
    component:HomeComponent
+  },
+  {
+  path:'products',
+   component:ProductsComponent,
+   canActivate:[authenticationGuard]
+  },
+  {
+   path:'product-details/:Id',
+   component:ProductDetailsComponent,
+   canActivate:[authenticationGuard]
   }
-  ,{path:'cart',
-   component:CartComponent
+  ,
+  {
+   path:'basket',
+   component:BasketComponent ,
+   canActivate:[authenticationGuard]
   }
-  ,{path:'categories',
-   component:CategoriesComponent
+  ,
+  {
+   path:'checkout',
+   component:CheckoutComponent ,
+   canActivate:[authenticationGuard]
   }
-  ,{path:'about-us',
-   component:AboutUsComponent
+  ,
+  {
+   path:'about-us',
+   component:AboutUsComponent ,
+   canActivate:[authenticationGuard]
   }
-  ,{path:'brands',
-   component:BrandsComponent
+  ,
+  {
+    path:"checkout-success",
+    component:CheckoutSuccessComponent,
+    canActivate:[authenticationGuard]
   }
-  ,{path:'login',
+  ,
+  {
+   path:'login',
    component:LoginComponent
   }
-  ,{path:'register',
+  ,
+  {
+   path:'register',
    component:RegisterComponent
   }
-  ,{path:'**',
+  ,
+  {
+    path: 'settings',
+    loadChildren: () => import('./setting/setting.module')
+    .then(m => m.SettingModule) }
+  ,
+  {
+    path:'**',
    component:NotFoundComponent
   }
 ];

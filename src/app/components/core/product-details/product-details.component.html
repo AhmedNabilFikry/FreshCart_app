@@ -1,0 +1,50 @@
+<div class="container d-flex align-items-center justify-content-center mt-2 mb-2">
+  <div class="card">
+    <div class="card__title">
+      <div class="icon">
+        <a routerLink="/home"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <h3>New products</h3>
+    </div>
+    <div class="card__body">
+      <div class="col-md-4">
+        <!-- <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide *ngFor="let p of productDetails.images">
+            <img height="300" width="300" [src]="p" alt="" />
+          </ng-template>
+        </owl-carousel-o> -->
+      </div>
+      <div class="col-md-8">
+        <div class="half mt-4">
+          <div class="featured_text">
+            <h1>{{ productDetails.name }}</h1>
+            <p class="sub">{{ productDetails.category }}</p>
+            <p class="price">{{ productDetails.price | currency : "USD" }}</p>
+          </div>
+          <div class="description">
+            <p>{{ productDetails.description }}</p>
+          </div>
+          <span class="stock"><i class="fa fa-pen"></i> In stock</span>
+          <div class="reviews">
+            <ul class="stars">
+              <li *ngFor="let star of getStars(productDetails.rate)">
+                <i class="fa" [ngClass]="{ 'fa-star': star, 'fa-star-o': !star }"></i>
+              </li>
+            </ul>
+            <span>{{ productDetails.rate }}</span>
+          </div>
+          <div class="card__body">
+            <div class="action">
+              <button type="submit" class="btn btn-success py-1 m-1">
+                Add to cart
+              </button>
+              <button type="submit" class="btn btn-success py-1 m-1">
+                Buy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

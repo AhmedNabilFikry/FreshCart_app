@@ -31,6 +31,10 @@ a , a:hover{
     box-shadow: var(--shadow);
     border: solid 1px var(--main-color);
 }
+
+.border-main{
+  border: solid 1px var(--main-color)  !important;
+}
 .product .btn
 {
     transition: transform 1s , opacity 1s;

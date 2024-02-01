@@ -41,20 +41,22 @@
             >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="cart" aria-current="page" *ngIf="IsLogin"
-            >Cart</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" routerLink="products" aria-current="page" *ngIf="IsLogin"
             >Products</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" routerLink="categories" aria-current="page" *ngIf="IsLogin"
             >Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" routerLink="brands" aria-current="page" *ngIf="IsLogin"
             >Brands</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link active  position-relative " routerLink="basket" aria-current="page" *ngIf="IsLogin">
+            <i class="fa-solid fa-cart-shopping text-main fa-lg"></i>
+            <span class="badge bg-main text-white position-absolute top-0 end-0">{{BasketitemsCount}}</span>
+          </a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -75,7 +77,10 @@
             >SignUp</a>
         </li>
         <li class="nav-item d-flex align-items-center mx-2">
-          <span *ngIf="IsLogin" class="nav-link logout text-dark">Hello {{ userName['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'] }}</span>
+          <span *ngIf="IsLogin" class="nav-link logout text-dark">Salam 👋 {{ userName['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'] }}</span>
+        </li>
+        <li class="nav-item d-flex align-items-center mx-2">
+          <span *ngIf="IsLogin" class="nav-link  text-dark" routerLink="settings">Settings</span>
         </li>
         <li class="nav-item cursor-pointer" *ngIf="IsLogin" (click) = "SingOut()" >
           <span class="nav-link active"

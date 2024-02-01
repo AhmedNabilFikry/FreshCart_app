@@ -22,7 +22,7 @@ onSignIn(loginData:FormGroup):void
   this.IsLoading = true;
   if (loginData.valid) {
     this._AuthService.SignIn(loginData.value).subscribe({
-      next: (response) =>{
+      next: (response:any) =>{
         if (response.message === 'Succeeded') {
           localStorage.setItem('userToken',response.user.token);
           this._AuthService.SaveUserData();

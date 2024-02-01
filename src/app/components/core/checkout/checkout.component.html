@@ -1,0 +1,91 @@
+<!--
+<div class="container-fluid">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-6 py-5">
+      <div class="text-center">
+        <h2 class="text-success">Order Now :)</h2>
+      </div>
+    <form  [formGroup]="shipppingAddressForm" (ngSubmit)="createOrder()">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control mb-2" formControlName="firstName">
+      <div class="errors" >
+        @if(shipppingAddressForm.get('firstName')?.invalid && shipppingAddressForm.get('firstName')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('firstName')?.getError('required')">*required</p>
+        }@else if (shipppingAddressForm.get('firstName')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+
+      <button type="submit" class="btn bg-main text-white">Place Order</button>
+    </form>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<div class="container-fluid">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-6 py-5">
+      <div class="text-center">
+        <h2 class="text-success">Order Now :)</h2>
+      </div>
+      <div *ngIf="isLoading" class="text-center">
+        <div class="spinner-border text-main" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <form [formGroup]="shipppingAddressForm" (ngSubmit)="createOrder()" *ngIf="!isLoading">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control mb-2" formControlName="firstName">
+        <div class="errors">
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('firstName')?.invalid && shipppingAddressForm.get('firstName')?.touched && shipppingAddressForm.get('firstName')?.getError('required')">*required</p>
+          <p class="alert alert-success py-1 mt-1" *ngIf="shipppingAddressForm.get('firstName')?.valid">Valid Input!</p>
+        </div>
+      <label for="lastName">Last Name</label>
+      <input type="text" formControlName="lastName" class="form-control mb-2">
+      <div class="errors">
+        @if (shipppingAddressForm.get('lastName')?.errors && shipppingAddressForm.get('lastName')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('lastName')?.getError('required')">*required</p>
+        }@else if (shipppingAddressForm.get('lastName')?.valid) {
+          <p class="alert alert-success py-1 mt-1">Valid Input!</p>
+        }
+      </div>
+      <label for="city">City</label>
+      <input type="text" formControlName="city" class="form-control mb-2">
+      <div class="errors">
+        @if (shipppingAddressForm.get('city')?.errors && shipppingAddressForm.get('city')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('city')?.getError('required')">*required</p>
+        }@else if (shipppingAddressForm.get('city')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+      <label for="country">Country</label>
+      <input type="country" formControlName="country" class="form-control mb-2">
+      <div class="errors">
+        @if (shipppingAddressForm.get('country')?.errors && shipppingAddressForm.get('country')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('country')?.getError('required')">*required</p>
+        }@else if (shipppingAddressForm.get('country')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+      <label for="street">Street</label>
+      <input type="text" formControlName="street" class="form-control mb-2">
+      <div class="errors">
+        @if (shipppingAddressForm.get('street')?.errors && shipppingAddressForm.get('street')?.touched) {
+          <p class="alert alert-danger py-1 mt-1" *ngIf="shipppingAddressForm.get('street')?.getError('required')">*required</p>
+        }@else if (shipppingAddressForm.get('street')?.valid) {
+          <p class="alert alert-success py-1 mt-2">Valid Input!</p>
+        }
+      </div>
+        <label for="deliveryMethod">Select delivery Method</label>
+          <select class="form-select form-select-sm mb-2" aria-label=".form-select-sm example"  id="deliveryMethod" formControlName="deliveryMethod">
+            <option *ngFor="let method of deliveryMethods" [value]="method.id">{{ method.deliveryTime }}</option>
+          </select>
+        <button type="submit" class="btn bg-main text-white">Place Order</button>
+      </form>
+    </div>
+  </div>
+</div>
